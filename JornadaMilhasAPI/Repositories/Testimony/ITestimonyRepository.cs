@@ -6,8 +6,8 @@ namespace JornadaMilhasAPI.Repositories.Testimony
     {
         TestimonyModel get(int id);
         IEnumerable<TestimonyModel> getHome();
-        bool insert();
-        bool update();
-        bool delete();
+        bool insert(TestimonyModel testimony);
+        void update(TestimonyModel testimony);
+        void delete(int id);
     }
 }

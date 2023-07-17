@@ -1,9 +1,11 @@
-﻿using JornadaMilhasAPI.Repositories.Testimony;
+﻿using JornadaMilhasAPI.Models;
+using JornadaMilhasAPI.Repositories.Testimony;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace JornadaMilhasAPI.Controllers
 {
-    [Route("api/depoimentos")]
+    [Route("api")]
     [ApiController]
     public class TestimonyController : Controller
     {
@@ -13,10 +15,11 @@ namespace JornadaMilhasAPI.Controllers
             _testimony = testimony;
         }
 
-        [HttpGet]
+        [HttpGet("depoimentos/{id}")]
         public IActionResult Get(int id)
         {
             try {
+
                 var testimony = _testimony.get(id);
                 if(testimony is null)
                 {
@@ -31,7 +34,8 @@ namespace JornadaMilhasAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("depoimentos-home")]
+
         public IActionResult GetHome()
         {
             try
@@ -49,17 +53,19 @@ namespace JornadaMilhasAPI.Controllers
                 return Problem();
             }
         }
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("depoimentos/{id}")]
+        public IActionResult Delete(int id)
         {
             try
             {
-                
-                if (!_testimony.delete())
+                var testimony = _testimony.get(id);
+                if (testimony is null)
                 {
                     return NotFound();
                 }
-                return Ok();
+                _testimony.delete(id);
+                return StatusCode(200, new { status = 200, message = "Depoimento deletado com sucesso" });
+
             }
             catch (Exception ex)
             {
@@ -67,16 +73,18 @@ namespace JornadaMilhasAPI.Controllers
                 return Problem();
             }
         }
-        [HttpPut]
-        public IActionResult Update()
+        [HttpPut("depoimentos")]
+        public IActionResult Update([FromBody] TestimonyModel testimony)
         {
             try
             {
-                if (!_testimony.update())
+                var testimonyGet = _testimony.get(testimony.Id);
+                if (testimonyGet is null)
                 {
                     return NotFound();
                 }
-                return Ok();
+                _testimony.update(testimony);
+                return StatusCode(201, new { status = 201, message = "Depoimento atualizado com sucesso" });
             }
             catch (Exception ex)
             {
@@ -84,10 +92,23 @@ namespace JornadaMilhasAPI.Controllers
                 return Problem();
             }
         }
-        [HttpPost]
-        public IActionResult Insert()
+        [HttpPost("depoimentos")]
+        public IActionResult Insert([FromBody] TestimonyModel testemony)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var inserted = _testimony.insert(testemony);
+                if(!inserted)
+                {
+                    return BadRequest();
+                }
+                return StatusCode(201, new { status = 201, message = "Depoimento adicionado com sucesso"});
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Problem();
+            }
         }
     }
 }
