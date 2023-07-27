@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //Dependency Injection
-builder.Services.AddTransient<ITestimonyRepository, TestimonyRepository>();
+builder.Services.AddTransient<IStatementRepository, StatementRepository>();
 builder.Services.AddCors(op =>
 {
     op.AddPolicy("CorsPolicy", builder =>

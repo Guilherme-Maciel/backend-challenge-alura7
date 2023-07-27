@@ -7,10 +7,10 @@ namespace JornadaMilhasAPI.Controllers
 {
     [Route("api")]
     [ApiController]
-    public class TestimonyController : Controller
+    public class StatementController : Controller
     {
         private readonly ITestimonyRepository _testimony;
-        public TestimonyController(ITestimonyRepository testimony)
+        public StatementController(ITestimonyRepository testimony)
         {
             _testimony = testimony;
         }

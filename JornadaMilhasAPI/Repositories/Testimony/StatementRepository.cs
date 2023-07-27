@@ -23,7 +23,7 @@ namespace JornadaMilhasAPI.Repositories.Testimony
             con.Execute(sql, new { Id = id });
         }
 
-        public TestimonyModel get(int id)
+        public StatementModel get(int id)
         {
             using MySqlConnection con = new MySqlConnection(_config.GetConnectionString("MySqlConnection"));
             con.Open();
@@ -36,11 +36,11 @@ namespace JornadaMilhasAPI.Repositories.Testimony
                 FROM depoimentos as dep
                 WHERE dep.id = @Id;
             ";
-            var result = con.Query<TestimonyModel>(sql, new { Id = id })?.FirstOrDefault();
+            var result = con.Query<StatementModel>(sql, new { Id = id })?.FirstOrDefault();
             return result;
         }
 
-        public IEnumerable<TestimonyModel> getHome()
+        public IEnumerable<StatementModel> getHome()
         {
             using MySqlConnection con = new MySqlConnection(_config.GetConnectionString("MySqlConnection"));
             con.Open();
@@ -54,10 +54,10 @@ namespace JornadaMilhasAPI.Repositories.Testimony
                 ORDER BY RAND()
                 LIMIT 3;
             ";
-            return con.Query<TestimonyModel>(sql);
+            return con.Query<StatementModel>(sql);
         }
 
-        public bool insert(TestimonyModel testimony)
+        public bool insert(StatementModel testimony)
         {
             using MySqlConnection con = new MySqlConnection(_config.GetConnectionString("MySqlConnection"));
             con.Open();
@@ -69,7 +69,7 @@ namespace JornadaMilhasAPI.Repositories.Testimony
             return result > 0;
         }
 
-        public void update(TestimonyModel testimony)
+        public void update(StatementModel testimony)
         {
             using MySqlConnection con = new MySqlConnection(_config.GetConnectionString("MySqlConnection"));
             con.Open();
