@@ -2,12 +2,12 @@
 using JornadaMilhasAPI.Models;
 using MySql.Data.MySqlClient;
 
-namespace JornadaMilhasAPI.Repositories.Testimony
+namespace JornadaMilhasAPI.Repositories.Statement
 {
-    public class TestimonyRepository : ITestimonyRepository
+    public class StatementRepository : IStatementRepository
     {
         private readonly IConfiguration _config;
-        public TestimonyRepository(IConfiguration config)
+        public StatementRepository(IConfiguration config)
         {
             _config = config;
         }

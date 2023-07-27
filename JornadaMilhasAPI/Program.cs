@@ -1,4 +1,5 @@
-using JornadaMilhasAPI.Repositories.Testimony;
+using JornadaMilhasAPI.Repositories.Destination;
+using JornadaMilhasAPI.Repositories.Statement;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //Dependency Injection
 builder.Services.AddTransient<IStatementRepository, StatementRepository>();
+builder.Services.AddTransient<IDestinationRepository, DestinationRepository>();
+
 builder.Services.AddCors(op =>
 {
     op.AddPolicy("CorsPolicy", builder =>

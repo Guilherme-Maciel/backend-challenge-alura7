@@ -1,8 +1,8 @@
 ﻿using JornadaMilhasAPI.Models;
 
-namespace JornadaMilhasAPI.Repositories.Testimony
+namespace JornadaMilhasAPI.Repositories.Statement
 {
-    public interface ITestimonyRepository
+    public interface IStatementRepository
     {
         StatementModel get(int id);
         IEnumerable<StatementModel> getHome();

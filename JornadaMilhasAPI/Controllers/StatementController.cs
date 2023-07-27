@@ -1,5 +1,5 @@
 ﻿using JornadaMilhasAPI.Models;
-using JornadaMilhasAPI.Repositories.Testimony;
+using JornadaMilhasAPI.Repositories.Statement;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,8 +9,8 @@ namespace JornadaMilhasAPI.Controllers
     [ApiController]
     public class StatementController : Controller
     {
-        private readonly ITestimonyRepository _testimony;
-        public StatementController(ITestimonyRepository testimony)
+        private readonly IStatementRepository _testimony;
+        public StatementController(IStatementRepository testimony)
         {
             _testimony = testimony;
         }
@@ -74,7 +74,7 @@ namespace JornadaMilhasAPI.Controllers
             }
         }
         [HttpPut("depoimentos")]
-        public IActionResult Update([FromBody] TestimonyModel testimony)
+        public IActionResult Update([FromBody] StatementModel testimony)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace JornadaMilhasAPI.Controllers
             }
         }
         [HttpPost("depoimentos")]
-        public IActionResult Insert([FromBody] TestimonyModel testemony)
+        public IActionResult Insert([FromBody] StatementModel testemony)
         {
             try
             {

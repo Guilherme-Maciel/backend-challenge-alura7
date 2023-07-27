@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace JornadaMilhasAPI.Models
 {
-    public class TestimonyModel
+    public class StatementModel
     {
         [Required]
         public int Id { get; set; }
