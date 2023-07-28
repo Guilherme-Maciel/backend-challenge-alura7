@@ -43,7 +43,7 @@ namespace JornadaMilhasAPI.Repositories.Destination
             return result;
         }
 
-        public int Insert((string PictureURL, string Name, double Price) destination)
+        public int Insert(DestinationModel destination)
         {
             using MySqlConnection con = new MySqlConnection(_config.GetConnectionString("MySqlConnection"));
             con.Open();

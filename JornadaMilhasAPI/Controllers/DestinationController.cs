@@ -72,7 +72,7 @@ namespace JornadaMilhasAPI.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Insert([FromBody] (string PictureURL, string Name, double Price) destination)
+        public IActionResult Insert([FromBody] DestinationModel destination)
         {
             try
             {
